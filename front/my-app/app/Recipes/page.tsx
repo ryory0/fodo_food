@@ -10,7 +10,12 @@ import {
   SimpleGrid,
   Heading,
   Image,
-  Text
+  Text,
+  useDisclosure,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody
 } from '@chakra-ui/react'
 import {Spacer,Center, Input, VStack} from '@chakra-ui/react'
 import { Recipe, usersSample } from '@/api/ApiSample'
@@ -53,10 +58,19 @@ const recipes = [
   ];
 
 const RecipePage = ()=> {
+	const { isOpen, onOpen, onClose } = useDisclosure();
+	const [selectedRecipe, setSelectedRecipe] = useState(null);
+	const router = useRouter();
+
+	const handleRecipeClick = (id) => {
+		router.push(`/Recipes/RecipeDetail/${id}`);
+	};
+	
+
 	return (
 		<VStack spacing={8} align="start" w="full" p={5} bg="orange.50" px={10}>
 			<Heading as="h1" size="lg" ml={4}>レシピ</Heading>
-			<SimpleGrid columns={[1, 2, 3]} spacing={15} w="full">
+			<SimpleGrid columns={[1, 2, 3]} spacing={15} w="full" px={5}>
 				{recipes.map((recipe) => (
 					<Box
 					key={recipe.id}
@@ -67,6 +81,7 @@ const RecipePage = ()=> {
 					overflow="hidden"   // 親要素の overflow を hidden に
 					_hover={{ shadow: "lg", transform: "scale(1.02)" }}
 					transition="all 0.2s"
+					onClick={() => handleRecipeClick(recipe.id)}
 				  >
 					<Image
 					  src={recipe.imageUrl}
@@ -96,4 +111,4 @@ const RecipePage = ()=> {
 	)
 }
 
-export default RecipePage
+export default RecipePage;
