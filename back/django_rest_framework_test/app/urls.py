@@ -1,8 +1,7 @@
-from django.urls import path
-from . import views
+from rest_framework import routers
+from .views import RecipeViewSet, CommentViewSet, ProductViewSet
 
-urlpatterns = [
-    path('', views.ListDaily.as_view()), #日報一覧
-    path('<int:pk>/', views.DetailDaily.as_view()), #1日の詳細
-    path('<str:cat>/', views.CategoryDairy.as_view()), #カテゴリ別一覧
-]
+router = routers.DefaultRouter()
+router.register(r'recipe', RecipeViewSet)
+router.register(r'comment', CommentViewSet)
+router.register(r'product', ProductViewSet)

@@ -17,7 +17,7 @@ export const Footer = () => {
 			<Divider borderColor='orange' />
 			<HStack spacing={4} w="full" maxW="100%" justifyContent="center">
 				<Button
-					onClick={() => router.push("/shopping")}
+					onClick={() => router.push("/Products")}
 					w="full"
 					bgColor="white"
 					border="1px solid orange"
@@ -35,7 +35,7 @@ export const Footer = () => {
 					レシピ
 				</Button>
 				<Button
-					onClick={() => router.push("/topics")}
+					onClick={() => router.push("/Topics")}
 					w="full"
 					bgColor="white"
 					border="1px solid orange"

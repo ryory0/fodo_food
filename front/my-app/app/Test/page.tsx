@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Box, Image, VStack, Text } from "@chakra-ui/react";
 import { motion, AnimatePresence } from "framer-motion";
