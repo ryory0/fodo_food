@@ -10,13 +10,15 @@ import {
   SimpleGrid,
   Heading,
   Image,
-  Text
+  Text,
+  useDisclosure,
+  DrawerOverlay,
+  DrawerContent,
+  DrawerHeader,
+  DrawerBody,
+  VStack
 } from '@chakra-ui/react'
-import {Spacer,Center, Input, VStack} from '@chakra-ui/react'
-import { Recipe, usersSample } from '@/api/ApiSample'
 import { useState, useEffect } from 'react'
-import {Fetchs} from '@/api/ApiSample'
-import {Api} from '@/api/Api'
 import { useRouter } from 'next/navigation'
 
 const products = [
@@ -52,10 +54,18 @@ const products = [
 	},
   ];
 
-const ProductsPage = ()=> {
+
+const productPage = ()=> {
+	const router = useRouter();
+
+	const handleproductClick = (id) => {
+		router.push(`/Products/PoductDetail/${id}`);
+	};
+	
+
 	return (
 		<VStack spacing={8} align="start" w="full" p={5} bg="orange.50" px={10}>
-			<Heading as="h1" size="lg" ml={4}>ショッピング</Heading>
+			<Heading as="h1" size="lg" ml={4}>レシピ</Heading>
 			<SimpleGrid columns={[1, 2, 3]} spacing={15} w="full" px={5}>
 				{products.map((product) => (
 					<Box
@@ -67,6 +77,7 @@ const ProductsPage = ()=> {
 					overflow="hidden"   // 親要素の overflow を hidden に
 					_hover={{ shadow: "lg", transform: "scale(1.02)" }}
 					transition="all 0.2s"
+					onClick={() => handleproductClick(product.id)}
 				  >
 					<Image
 					  src={product.imageUrl}
@@ -96,4 +107,4 @@ const ProductsPage = ()=> {
 	)
 }
 
-export default ProductsPage
+export default productPage;
